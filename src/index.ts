@@ -47,10 +47,6 @@ export function Err(message: string) {
 //   }
 // }
 
-// function divide(num: number, by: number) {
-//   return by === 0 ? Err("Cannot divide by 0") : Ok(num / by);
-// }
-
 // function addOne(val: number) {
 //   return val + 1;
 // }
