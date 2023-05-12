@@ -1,8 +1,8 @@
 ## Examples
 
-`Result, Err, Ok`
-
 ```ts
+import { Err, Ok } from "resultat";
+
 function divide(num: number, by: number) {
   return by === 0 ? Err("Cannot divide by 0") : Ok(num / by);
 }
