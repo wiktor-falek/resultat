@@ -8,43 +8,47 @@ export type ResultErr = {
   ok: false;
 };
 
-export function Ok<T>(value: T) {
-  const cb: ResultOk<T> = {
+export type Result<T> = ResultOk<T> | ResultErr;
+
+export function Ok<T>(value: T): ResultOk<T> {
+  return {
     val: value,
     ok: true,
   };
-  return cb;
 }
 
-export function Err(message: string) {
-  const cb: ResultErr = {
+export function Err(message: string): ResultErr {
+  return {
     err: message,
     ok: false,
   };
-  return cb;
 }
 
 // export class Maybe {
-//   value: any;
-//   constructor(value: any) {
-//     this.value = value;
+//   val: any;
+//   constructor(val: any) {
+//     this.val = val;
 //   }
 
 //   bind(func: (arg0: any) => any) {
-//     if (this.value === null) return this;
+//     if (this.val === null) return this;
 
-//     if (this.value.ok === false) {
+//     if (this.val.ok === false) {
 //       return this;
 //     }
 
-//     if (this.value.ok === true) {
-//       let value = func(this.value.val);
-//       return new Maybe(value);
+//     if (this.val.ok === true) {
+//       let val = func(this.val.val);
+//       return new Maybe(val);
 //     }
 
-//     let value = func(this.value);
-//     return new Maybe(value);
+//     let val = func(this.val);
+//     return new Maybe(val);
 //   }
+// }
+
+// function divide(num: number, by: number): Result<number> {
+//   return by === 0 ? Err("Cannot divide by 0") : Ok(num / by);
 // }
 
 // function addOne(val: number) {
@@ -52,8 +56,8 @@ export function Err(message: string) {
 // }
 
 // const result = new Maybe(20)
-//   .bind((num) => divide(num, 2))
+//   .bind((num) => divide(num, 0))
 //   .bind(addOne)
 //   .bind((num) => divide(num, 2));
 
-// console.log(result.value);
+// console.log(result.val);
