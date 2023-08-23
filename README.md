@@ -18,7 +18,7 @@ yarn add resultat
 
 ## Usage Example: Dividing Two Numbers
 
-Consider a simple use case of dividing two numbers. The divideNumbers function returns either an **Ok** result containing the division result or an **Err** result with an error message if division by zero occurs.
+Consider a simple use case of dividing two numbers. The divideNumbers function returns either an **ResultOk** result containing the division result or an **ResultErr** result with an error message if division by zero occurs.
 
 ```ts
 import { Ok, Err } from "resultat";
