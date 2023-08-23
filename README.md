@@ -37,7 +37,7 @@ Before retrieving the value from the result, you have to confirm whether the res
 ```ts
 const result = divideNumbers(10, 0);
 
-if (result.ok) { 
+if (result.ok) {
   console.log("Division result:", result.val);
 } else {
   // Handle the Err case
@@ -74,8 +74,8 @@ The **unwrapOrElse** function is used to extract the value from an **Ok** result
 
 ```ts
 const result = divideNumbers(10, 0);
-const num = result.unwrapOrElse(() => {
-  console.log("Division failed, using fallback value");
+const num = result.unwrapOrElse((errorMessage) => {
+  console.error(errorMessage, "Defaulting to 0");
   return 0; // Fallback value provided by the callback
 });
 ```
@@ -110,9 +110,7 @@ function findUser(username: string) {
 
 Resultat allows you to annotate return types explicitly, ensuring clarity in intentions and outcomes of your code.
 
-### Annotating a Single Ok Path
-
-Consider a scenario where you have a function returning user data in an Ok result. By annotating the return type, you ensure that the function returns an Ok path with specified shape. The function can also return Err() but it doesn't have to.
+Consider a scenario where you have a function returning user data in an Ok result. By annotating the return type, you ensure that the function returns an Ok path with specified shape. The function can also return any amount of Err results.
 
 ```ts
 type UserData = {
@@ -130,5 +128,3 @@ function findUser(username: string): Result<UserData> {
   return Ok(user);
 }
 ```
-
-In this case, the annotated return type explicitly states that the function either returns **Ok** containing UserData or **Err**.

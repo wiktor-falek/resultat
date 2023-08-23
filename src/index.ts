@@ -3,7 +3,7 @@ export type ResultOk<T> = {
   ok: true;
   unwrap: () => T;
   unwrapOr: <TDefault>(defaultValue: TDefault) => T;
-  unwrapOrElse: <TReturn>(cb: () => TReturn) => T;
+  unwrapOrElse: <TReturn>(cb: (err: string) => TReturn) => T;
 };
 
 export type ResultErr = {
@@ -11,7 +11,7 @@ export type ResultErr = {
   ok: false;
   unwrap: () => never;
   unwrapOr: <TDefault>(defaultValue: TDefault) => TDefault;
-  unwrapOrElse: <TReturn>(cb: () => TReturn) => TReturn;
+  unwrapOrElse: <TReturn>(cb: (err: string) => TReturn) => TReturn;
 };
 
 export type Result<T> = ResultOk<T> | ResultErr;
@@ -34,6 +34,6 @@ export function Err(message: string): ResultErr {
       throw new Error(message);
     },
     unwrapOr: (defaultValue) => defaultValue,
-    unwrapOrElse: (cb) => cb(),
+    unwrapOrElse: (cb) => cb(message),
   };
 }
