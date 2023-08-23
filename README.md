@@ -1,8 +1,8 @@
-# Resultat - Typed Result Handling for TypeScript
+# Resultat - Typed Result Handling for JS/TS
 
 ## Description
 
-Resultat is a TypeScript library designed to simplify error handling and provide a structured approach for dealing with success and error scenarios. The library introduces a custom **Result** type along with utility functions that encapsulate the outcomes of these scenarios. By leveraging Resultat, you can enhance the reliability and clarity of error handling in your TypeScript projects.
+Resultat is a TypeScript library designed to simplify error handling and provide a structured approach for dealing with success and error scenarios. The library introduces a custom **Result** type along with utility functions to deal with the outcome. By leveraging Resultat, you can enhance the reliability and clarity of error handling in your TypeScript projects.
 
 ## Installation
 
@@ -37,8 +37,7 @@ Before retrieving the value from the result, you have to confirm whether the res
 ```ts
 const result = divideNumbers(10, 0);
 
-if (result.ok) {
-  // Handle the Ok case
+if (result.ok) { 
   console.log("Division result:", result.val);
 } else {
   // Handle the Err case
