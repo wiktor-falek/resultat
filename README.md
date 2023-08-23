@@ -21,8 +21,6 @@ yarn add resultat
 Consider a simple use case of dividing two numbers. The divideNumbers function returns either an **Ok** result containing the division result or an **Err** result with an error message if division by zero occurs.
 
 ```ts
-typescript;
-
 import { Ok, Err } from "resultat";
 import type { Result } from "resultat";
 
@@ -89,14 +87,14 @@ In real-world applications, fetching user data from a database or API can result
 
 ### Function Explanation
 
-The findByUsername function attempts to retrieve user data based on a provided username. It uses a try...catch block to handle potential errors during the data retrieval process.
+The following function attempts to retrieve user data based on a provided username.
 
 - If a user is found, the function returns an Ok result containing the user object.
 - If no user is found, the function returns an Err result indicating that the user was not found.
-- If an error occurs during data retrieval, the function returns an Err result with a generic error message.
+- If UserModel.findByUsername throws, the function returns an Err result with a generic error message.
 
 ```ts
-function findUser(username) {
+function findUser(username: string) {
   try {
     const user = UserModel.findByUsername(username);
     if (user === null) {
@@ -111,7 +109,7 @@ function findUser(username) {
 
 ## Annotating Return Types with Resultat
 
-Resultat allows you to annotate return types explicitly, ensuring clarity in your code's intentions and outcomes. When using the **Result** type, which is a union of **ResultOk<T>** and **ResultErr**, specifying the return type explicitly can enhance code readability. Let's explore how to annotate return types using Result with examples of different **Ok** paths.
+Resultat allows you to annotate return types explicitly, ensuring clarity in intentions and outcomes of your code.
 
 ### Annotating a Single Ok Path
 
@@ -134,4 +132,4 @@ function findUser(username: string): Result<UserData> {
 }
 ```
 
-In this case, the annotated return type explicitly states that the function returns a Result containing UserData.
+In this case, the annotated return type explicitly states that the function either returns **ResultOk** containing UserData or **ResultErr**.
