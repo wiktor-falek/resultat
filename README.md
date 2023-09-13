@@ -108,23 +108,21 @@ function findUser(username: string) {
 
 ## Annotating Return Types with Resultat
 
-Resultat allows you to annotate return types explicitly, ensuring clarity in intentions and outcomes of your code.
-
-Consider a scenario where you have a function returning user data in an Ok result. By annotating the return type, you ensure that the function returns an Ok path with specified shape. The function can also return any amount of Err results.
+Resultat allows you to annotate return types explicitly, ensuring clarity in intentions and type of the **ResultOk** path.
 
 ```ts
 type UserData = {
-  username: string;
-  hash: string;
+  name: string;
   isAdmin: boolean;
 };
 
 function findUser(username: string): Result<UserData> {
-  // ...
-  if (true) {
-    return Err("Something went wrong");
+  if (x === 1) {
+    return Err("Error 1");
   }
-  // ...
-  return Ok(user);
+  if (x === 2) {
+    return Err("Error 2");
+  }
+  return Ok({ name: "John", isAdmin: false ));
 }
 ```
