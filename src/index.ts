@@ -3,18 +3,18 @@ export type ResultOk<T> = {
   ok: true;
   unwrap: () => T;
   unwrapOr: <TDefault>(defaultValue: TDefault) => T;
-  unwrapOrElse: <TReturn>(cb: (err: string) => TReturn) => T;
+  unwrapOrElse: <TReturn>(cb: (err: undefined) => TReturn) => T;
 };
 
-export type ResultErr = {
-  err: string;
+export type ResultErr<E> = {
+  err: E;
   ok: false;
   unwrap: () => never;
   unwrapOr: <TDefault>(defaultValue: TDefault) => TDefault;
-  unwrapOrElse: <TReturn>(cb: (err: string) => TReturn) => TReturn;
+  unwrapOrElse: <TReturn>(cb: (err: E) => TReturn) => TReturn;
 };
 
-export type Result<T> = ResultOk<T> | ResultErr;
+export type Result<T, E> = ResultOk<T> | ResultErr<E>;
 
 export function Ok<T>(value: T): ResultOk<T> {
   return {
@@ -22,18 +22,18 @@ export function Ok<T>(value: T): ResultOk<T> {
     ok: true,
     unwrap: () => value,
     unwrapOr: (defaultValue) => value,
-    unwrapOrElse: () => value,
+    unwrapOrElse: (error) => value,
   };
 }
 
-export function Err(message: string): ResultErr {
+export function Err<E>(error: E): ResultErr<E> {
   return {
-    err: message,
+    err: error,
     ok: false,
     unwrap: () => {
-      throw new Error(message);
+      throw error;
     },
     unwrapOr: (defaultValue) => defaultValue,
-    unwrapOrElse: (cb) => cb(message),
+    unwrapOrElse: (cb) => cb(error),
   };
 }
