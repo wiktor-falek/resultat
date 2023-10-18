@@ -108,7 +108,7 @@ function findUser(username: string) {
 
 ## Annotating Return Types with Resultat
 
-Resultat allows you to annotate return types explicitly, ensuring clarity in intentions and type of the **ResultOk** path.
+Resultat allows you to annotate return types explicitly, ensuring clarity in intentions and type of the **ResultOk** and **ResultErr** path.
 
 ```ts
 type UserData = {
@@ -116,7 +116,7 @@ type UserData = {
   isAdmin: boolean;
 };
 
-function findUser(username: string): Result<UserData> {
+function findUser(username: string): Result<UserData, string> {
   if (x === 1) {
     return Err("Error 1");
   }
