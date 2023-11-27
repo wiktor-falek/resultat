@@ -16,7 +16,7 @@ export type ResultErr<E> = {
 
 export type Result<T, E> = ResultOk<T> | ResultErr<E>;
 
-export function Ok<T = undefined>(value?: T): ResultOk<T> {
+export function Ok<T = unknown>(value?: T): ResultOk<T> {
   return {
     val: value as T,
     ok: true,
@@ -44,7 +44,7 @@ export function Err<E>(error: E): ResultErr<E> {
  * If the function throws, returns a {@link ResultErr}, otherwise {@link ResultOk}
  *
  * The type of {@link ResultErr} defaults to unknown as TypeScript simply doesn't know.
- * You can pass types of {@link ResultOk} and {@link ResultErr} as generics, or you can use {@link ToResultCurried} to specify just the type of 
+ * You can pass types of {@link ResultOk} and {@link ResultErr} as generics, or you can use {@link ToResultCurried} to specify just the type of
  * {@link ResultErr} and infer the {@link ResultOk} from callback return value.
  *
  * To specify just the type of {@link ResultErr} use {@link ToResultCurried}.
@@ -99,7 +99,7 @@ export function Err<E>(error: E): ResultErr<E> {
  * If the function throws or the promise is rejected, returns a {@link ResultErr}, otherwise {@link ResultOk}.
  *
  * The type of ResultErr defaults to unknown as TypeScript simply doesn't know.
- * You can pass types of {@link ResultOk} and {@link ResultErr} as generics, or you can use {@link ToResultAsyncCurried} to specify just the type of 
+ * You can pass types of {@link ResultOk} and {@link ResultErr} as generics, or you can use {@link ToResultAsyncCurried} to specify just the type of
  * {@link ResultErr} and infer the {@link ResultOk} from callback return value.
  *
  * @example
