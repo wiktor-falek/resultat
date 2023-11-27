@@ -16,13 +16,13 @@ export type ResultErr<E> = {
 
 export type Result<T, E> = ResultOk<T> | ResultErr<E>;
 
-export function Ok<T>(value: T): ResultOk<T> {
+export function Ok<T = undefined>(value?: T): ResultOk<T> {
   return {
-    val: value,
+    val: value as T,
     ok: true,
-    unwrap: () => value,
-    unwrapOr: (defaultValue) => value,
-    unwrapOrElse: (error) => value,
+    unwrap: () => value as T,
+    unwrapOr: (defaultValue) => value as T,
+    unwrapOrElse: (error) => value as T,
   };
 }
 
@@ -58,14 +58,14 @@ export function Err<E>(error: E): ResultErr<E> {
  *
  * @param cb The synchronous function to execute.
  */
-export function ToResult<T, E = unknown>(cb: () => T): Result<T, E> {
-  try {
-    const result = cb();
-    return Ok(result);
-  } catch (error) {
-    return Err(error as E);
-  }
-}
+// export function ToResult<T, E = unknown>(cb: () => T): Result<T, E> {
+//   try {
+//     const result = cb();
+//     return Ok(result);
+//   } catch (error) {
+//     return Err(error as E);
+//   }
+// }
 
 /**
  * Curried version of {@link ToResult} that allows to specify
@@ -82,16 +82,16 @@ export function ToResult<T, E = unknown>(cb: () => T): Result<T, E> {
  *
  * @param cb The synchronous function to execute.
  */
-export function ToResultCurried<E>() {
-  return function <T>(cb: () => T): Result<T, E> {
-    try {
-      const result = cb();
-      return Ok(result);
-    } catch (error) {
-      return Err(error as E);
-    }
-  };
-}
+// export function ToResultCurried<E>() {
+//   return function <T>(cb: () => T): Result<T, E> {
+//     try {
+//       const result = cb();
+//       return Ok(result);
+//     } catch (error) {
+//       return Err(error as E);
+//     }
+//   };
+// }
 
 /**
  * Converts an asynchronous function to a `Promise<Result>` type.
@@ -111,16 +111,16 @@ export function ToResultCurried<E>() {
  *
  * @param cb - The asynchronous function to execute.
  */
-export async function ToResultAsync<T, E = unknown>(
-  cb: () => Promise<T>
-): Promise<Result<T, unknown>> {
-  try {
-    const result = await cb();
-    return Ok(result);
-  } catch (error) {
-    return Err(error as E);
-  }
-}
+// export async function ToResultAsync<T, E = unknown>(
+//   cb: () => Promise<T>
+// ): Promise<Result<T, unknown>> {
+//   try {
+//     const result = await cb();
+//     return Ok(result);
+//   } catch (error) {
+//     return Err(error as E);
+//   }
+// }
 
 /**
  * Curried version of {@link ToResultAsync} that allows specifying the type of the ResultErr the callback might throw.
@@ -135,13 +135,13 @@ export async function ToResultAsync<T, E = unknown>(
  *
  * @param cb - The asynchronous function to execute.
  */
-export function ToResultAsyncCurried<E>() {
-  return async function <T>(cb: () => T): Promise<Result<T, E>> {
-    try {
-      const result = await cb();
-      return Ok(result);
-    } catch (error) {
-      return Err(error as E);
-    }
-  };
-}
+// export function ToResultAsyncCurried<E>() {
+//   return async function <T>(cb: () => T): Promise<Result<T, E>> {
+//     try {
+//       const result = await cb();
+//       return Ok(result);
+//     } catch (error) {
+//       return Err(error as E);
+//     }
+//   };
+// }
