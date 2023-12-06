@@ -31,7 +31,7 @@ export function Err<E>(error: E): ResultErr<E> {
     err: error,
     ok: false,
     unwrap: () => {
-      throw error;
+      throw Err<E>(error);
     },
     unwrapOr: (defaultValue) => defaultValue,
     unwrapOrElse: (cb) => cb(error),
