@@ -89,7 +89,7 @@ function divideNumbers(a: number, b: number) {
 
 ## Unpacking `result.ok`
 
-Before retrieving the value from the result, you have to confirm whether the result returned **Ok** or **Err**, using type narrowing. If result.ok is true, it returned **Ok**, otherwise it returned **ResultErr** Here's how you can achieve this:
+Before retrieving the value from the result, you have to confirm whether the result returned **Ok** or **Err**, using type narrowing. If result.ok is true, it returned **Ok**, otherwise it returned **ResultErr**. Here's how you can achieve this:
 
 ```ts
 const result = divideNumbers(10, 0);
