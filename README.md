@@ -14,9 +14,10 @@ const data = await res.json();
 ```
 
 What happens when the request fails? Or the response is not in JSON format?
-It's very easy to forget that these functions might throw, unless you read the documentation or done this many times.
+It's very easy to forget that these functions might throw, unless you've read the documentation or learned the hard way.
 
-Now what if you're working with a 3rd party library, or your own code?
+But what if you're working with a 3rd party library, or your own code?
+Let's take a look at another example:
 
 ```ts
 try {
@@ -60,8 +61,8 @@ catch(e) {
 ```
 
 And if you forget to wrap a single function with a try/catch, your application could crash in production.
-With Resultat, you are forced to handle the error, or at least acknowledge it before you can get the data.
-And with errors being values, it won't default to unknown.
+With Resultat, you have to handle the error, or at least acknowledge it before you can get the data, and it will never throw.
+Additionally with having errors as values, their type will not default to unknown.
 
 
 ## Installation
