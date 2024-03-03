@@ -163,23 +163,24 @@ function findUser(username: string) {
 }
 ```
 
-## Annotating Return Types with Resultat
+## Handling each error individually
 
-Resultat allows you to annotate return types explicitly, ensuring clarity in intentions and type of the **ResultOk** and **ResultErr** path.
+When using primitives as errors, such as strings and numbers, you can use `as const` in each value passed to `Err()`.
+This pattern can make your code more readable.
 
 ```ts
-type UserData = {
-  name: string;
-  isAdmin: boolean;
-};
+function doStuff(x) {
+  if (x == 1) {
+    return Err("Error 1" as const);
+  }
+  if (x == 2) {
+    return Err("Error 2" as const);
+  }
+  return Ok();
+}
 
-function findUser(username: string): Result<UserData, string> {
-  if (x === 1) {
-    return Err("Error 1");
-  }
-  if (x === 2) {
-    return Err("Error 2");
-  }
-  return Ok({ name: "John", isAdmin: false ));
+const result = doStuff(1);
+if (!result.ok) {
+  if (result.err == "Error 1";) {} // Autocompletes to "Error 1" | "Error 2"
 }
 ```
