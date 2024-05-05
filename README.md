@@ -1,4 +1,4 @@
-# Resultat - Better error handling
+# Resultat - Better error handling for TypeScript
 
 ## Description
 
@@ -60,9 +60,9 @@ catch(e) {
 }
 ```
 
-And if you forget to wrap a single function with a try/catch, your application could crash in production.
-With Resultat, you have to handle the error, or at least acknowledge it before you can get the data, and it will never throw.
-Additionally with having errors as values, their type will not default to unknown.
+And if you forget to wrap a function call with a try/catch, your application could crash in production.
+With Resultat, you have to handle the error, or at least acknowledge it's possibility before you can retrieve the data, and it will never throw.
+Additionally with having errors as values, their type will be preserved, not defaulted to unknown.
 
 
 ## Installation
