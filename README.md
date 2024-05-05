@@ -166,7 +166,7 @@ function findUser(username: string) {
 ## Handling each error individually
 
 When using primitives as errors, such as strings and numbers, you can use `as const` in each value passed to `Err()`.
-This pattern can make your code more readable.
+With this approach the errors will be narrowed down to the literal string/number error values instead of any string/number.
 
 ```ts
 function doStuff(x) {
@@ -181,6 +181,6 @@ function doStuff(x) {
 
 const result = doStuff(1);
 if (!result.ok) {
-  if (result.err == "Error 1";) {} // Autocompletes to "Error 1" | "Error 2"
+  if (result.err == "Error 1") {} // Autocompletes to "Error 1" | "Error 2"
 }
 ```
