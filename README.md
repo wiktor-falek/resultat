@@ -122,7 +122,7 @@ The **unwrapOr** function extracts the value from an **Ok** result or returns a 
 
 ```ts
 const result = divideNumbers(10, 0);
-const num = result.unwrapOr(0); // Since the function returned Err, it will return undefined
+const num = result.unwrapOr(0); // divideNumbers() returned Err, defaulting result to 0
 ```
 
 ## `unwrapOrElse`: Providing a Callback
